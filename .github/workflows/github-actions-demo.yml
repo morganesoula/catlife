@@ -1,5 +1,9 @@
 name: GitHub Actions Demo
-on: push
+on: 
+  push:
+    branches:
+      - main
+      - develop
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
