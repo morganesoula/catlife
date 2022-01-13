@@ -1,7 +1,6 @@
 package com.ms.catlife
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
 /**
