@@ -1,5 +1,9 @@
 name: GitHub Actions Demo
-on: push
+on: 
+  push:
+    branches:
+      - main
+      - develop
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -9,4 +13,4 @@ jobs:
       with:
         fetch-depth: 0
     - name: Lint Code Base
-      uses: github/super-linter@v4
+      uses: "vroy/gha-kotlin-linter@v1"
