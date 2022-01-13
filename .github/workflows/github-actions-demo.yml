@@ -12,5 +12,5 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: unit tests
+    - name: Unit tests
       run: ./gradlew testDebugUnitTest
