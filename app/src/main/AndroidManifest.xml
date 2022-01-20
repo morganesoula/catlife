@@ -10,13 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatLife">
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:exported="false">
+=======
+            android:name=".splashscreen.Splashscreen"
+            android:exported="true"
+            android:theme="@style/Theme.CatLife.NoActionBar">
+>>>>>>> 816f9592541867484f90d44e9d588ff1becfa883
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
