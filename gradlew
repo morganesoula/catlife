@@ -11,20 +11,27 @@
 PRG="$0"
 # Need this for relative symlinks.
 while [ -h "$PRG" ] ; do
-    ls=`ls -ld "$PRG"`
+    ls=$(ls -ld "$PRG")
+    # shellcheck disable=SC2006
     link=`expr "$ls" : '.*-> \(.*\)$'`
     if expr "$link" : '/.*' > /dev/null; then
         PRG="$link"
     else
+        # shellcheck disable=SC2006
         PRG=`dirname "$PRG"`"/$link"
     fi
 done
 SAVED="`pwd`"
+# shellcheck disable=SC2164
+# shellcheck disable=SC2006
 cd "`dirname \"$PRG\"`/" >/dev/null
+# shellcheck disable=SC2006
 APP_HOME="`pwd -P`"
+# shellcheck disable=SC2164
 cd "$SAVED" >/dev/null
 
 APP_NAME="Gradle"
+# shellcheck disable=SC2006
 APP_BASE_NAME=`basename "$0"`
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
