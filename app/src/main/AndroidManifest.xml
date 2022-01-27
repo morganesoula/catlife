@@ -3,6 +3,7 @@
     package="com.ms.catlife">
 
     <application
+        android:name=".CatLifeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,11 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatLife">
         <activity
+            android:name=".addcat.ui.AddCatFormActivity"
+            android:exported="true" />
+        <activity
             android:name=".splashscreen.Splashscreen"
             android:exported="true"
             android:theme="@style/Theme.CatLife.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
