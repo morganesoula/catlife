@@ -1,4 +1,4 @@
-package com.ms.catlife.splashscreen.ui.theme
+package com.ms.catlife.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -7,15 +7,15 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = PrimaryColor,
+    primaryVariant = PrimaryDarkColor,
+    secondary = SecondaryDarkColor
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = SecondaryColor,
+    primaryVariant = PrimaryLightColor,
+    secondary = SecondaryLightColor
 
     /* Other default colors to override
     background = Color.White,

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gender">Genre</string>
+    <string name="male">Mâle</string>
+    <string name="female">Femelle</string>
+    <string name="birthdate">Date de naissance</string>
+    <string name="race">Race</string>
+    <string name="day">Jour</string>
+    <string name="month">Mois</string>
+    <string name="year">Année</string>
+    <string name="name_of_the_cat">Nom du chat</string>
+</resources>

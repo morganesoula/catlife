@@ -25,9 +25,10 @@ class Splashscreen : ComponentActivity() {
             SplashscreenLayout()
         }
 
-
         Handler(Looper.getMainLooper()).postDelayed({
             val mainIntent = Intent(this, MainActivity::class.java)
+            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            finish()
             startActivity(mainIntent)
         }, 1000)
     }

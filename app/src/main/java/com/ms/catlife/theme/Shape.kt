@@ -1,4 +1,4 @@
-package com.ms.catlife.splashscreen.ui.theme
+package com.ms.catlife.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

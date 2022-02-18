@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">Cat Life</string>
-    <string name="title_activity_splashscreen">Splashscreen</string>
+    <string name="app_name" translatable="false">Cat Life</string>
+    <string name="title_activity_splashscreen" translatable="false">Splashscreen</string>
+
+
+    // FORM
+    <string name="name_of_the_cat">Name of the cat</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="race">Race</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">A</string>
 </resources>
