@@ -3,10 +3,19 @@
     <string name="gender">Genre</string>
     <string name="male">Mâle</string>
     <string name="female">Femelle</string>
-    <string name="birthdate">Date de naissance</string>
+    <string name="birthdate">Date de naissance*</string>
     <string name="race">Race</string>
     <string name="day">Jour</string>
     <string name="month">Mois</string>
     <string name="year">Année</string>
-    <string name="name_of_the_cat">Nom du chat</string>
+    <string name="name_of_the_cat">Nom du chat*</string>
+    <string name="diseases">Maladies connues</string>
+    <string name="weight">Poids (kg)</string>
+    <string name="coat">Robe*</string>
+    <string name="coat_placeholder">Couleur de la fourrure*</string>
+    <string name="add_cat_title">Ajouter un nouveau chat</string>
+    <string name="add_cat_submit">Ajouter ce chat!</string>
+    <string name="last_vaccine">Date du dernier vaccin</string>
+    <string name="last_de_worming">Date du dernier vermifuge</string>
+    <string name="last_flea_treatment">Date du dernier antipuce</string>
 </resources>

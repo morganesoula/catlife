@@ -11,7 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AddCatViewModel @Inject constructor(private val catRepository: CatRepository) : ViewModel() {
 
-    fun insert(cat: Cat) = viewModelScope.launch {
-        catRepository.insertCat(cat)
+    //TODO Make it not nullable
+    fun insert(cat: Cat?) = viewModelScope.launch {
+        cat?.let { catRepository.insertCat(it) }
     }
 }

@@ -3,6 +3,7 @@ package com.ms.catlife.composable.main
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,8 +21,8 @@ import androidx.compose.ui.unit.dp
 import com.ms.catlife.main.data.model.Cat
 
 @Composable
-fun HomeCatBody(listOfCats: ArrayList<Cat>) {
-    Column {
+fun HomeCatBody(listOfCats: ArrayList<Cat>, contentPadding: PaddingValues) {
+    Column(modifier = Modifier.padding(contentPadding)) {
         Welcome()
         ListOfCats(listOfCats)
     }
