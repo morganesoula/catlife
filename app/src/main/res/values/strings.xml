@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Cat Life</string>
+    <string name="empty">Not found</string>
     <string name="add_cat_title">Add a new cat</string>
     <string name="title_activity_splashscreen" translatable="false">Splashscreen</string>
 
@@ -9,17 +10,19 @@
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="weight">Weight (lbs)</string>
+    <string name="weight">Weight (lbs)*</string>
+    <string name="weight_error_message">Weight should stay between 0.1 and 23 lbs included</string>
     <string name="coat">Coat*</string>
     <string name="coat_placeholder">Color of the fur*</string>
     <string name="birthdate">Birthdate*</string>
-    <string name="race">Race</string>
+    <string name="race">Race*</string>
     <string name="diseases">Known diseases</string>
-    <string name="day">Day</string>
-    <string name="month">Month</string>
-    <string name="year">Year</string>
+    <string name="diseases_placeholder">Fill with your cat medical issues. Leave empty if your cat is doing just fine.</string>
     <string name="last_vaccine">Date of last vaccine</string>
     <string name="last_de_worming">Date of last de-worming</string>
     <string name="last_flea_treatment">Date of last flea treatment</string>
+    <string name="inconsistent">Inconsistent value</string>
     <string name="add_cat_submit">Submit cat!</string>
+    <string name="name_lenght_error">Name should have at least one character</string>
+    <string name="should_not_be_empty">Field should not be empty</string>
 </resources>

@@ -11,10 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatLife">
         <activity
-            android:name=".addcat.ui.AddCatFormActivity"
-            android:exported="true" />
-        <activity
-            android:name=".splashscreen.Splashscreen"
+            android:name=".presentation.screen.Splashscreen"
             android:exported="true"
             android:theme="@style/Theme.CatLife.NoActionBar">
             <intent-filter>
@@ -23,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.ui.MainActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -1,16 +1,19 @@
 package com.ms.catlife.di
 
-import com.ms.catlife.main.data.repository.CatRepository
-import com.ms.catlife.main.data.repository.ICatRepository
-import dagger.Binds
+import com.ms.catlife.data.repository.CatRepositoryImpl
+import com.ms.catlife.data.repository.dataSource.CatLocalDataSource
+import com.ms.catlife.domain.repository.CatRepository
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class CatRepositoryModule {
+object CatRepositoryModule {
 
-    @Binds
-    abstract fun providesCatRepository(impl: CatRepository): ICatRepository
+    @Provides
+    fun providesCatRepository(
+        catLocalDataSource: CatLocalDataSource
+    ): CatRepository = CatRepositoryImpl(catLocalDataSource)
 }

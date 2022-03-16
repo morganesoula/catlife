@@ -4,13 +4,10 @@
     <string name="male">Mâle</string>
     <string name="female">Femelle</string>
     <string name="birthdate">Date de naissance*</string>
-    <string name="race">Race</string>
-    <string name="day">Jour</string>
-    <string name="month">Mois</string>
-    <string name="year">Année</string>
+    <string name="race">Race*</string>
     <string name="name_of_the_cat">Nom du chat*</string>
     <string name="diseases">Maladies connues</string>
-    <string name="weight">Poids (kg)</string>
+    <string name="weight">Poids (kg)*</string>
     <string name="coat">Robe*</string>
     <string name="coat_placeholder">Couleur de la fourrure*</string>
     <string name="add_cat_title">Ajouter un nouveau chat</string>
@@ -18,4 +15,10 @@
     <string name="last_vaccine">Date du dernier vaccin</string>
     <string name="last_de_worming">Date du dernier vermifuge</string>
     <string name="last_flea_treatment">Date du dernier antipuce</string>
+    <string name="empty">Inconnu</string>
+    <string name="weight_error_message">Le poids devrait être compris entre 0,1 et 22 inclus kilos</string>
+    <string name="diseases_placeholder">Indiquez les problèmes médicaux de votre chat. S\'il n\'en possède pas, ignorez cette partie.</string>
+    <string name="inconsistent">Valeur incohérente</string>
+    <string name="name_lenght_error">Le nom devrait comporter au moins un caractère</string>
+    <string name="should_not_be_empty">Ce champ est obligatoire</string>
 </resources>

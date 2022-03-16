@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ms.catlife.main.data.dao.ICatDAO
-import com.ms.catlife.main.data.model.Cat
+import com.ms.catlife.data.db.CatDAO
+import com.ms.catlife.domain.model.Cat
 
 @Database(
     entities = [Cat::class],
@@ -14,7 +14,7 @@ import com.ms.catlife.main.data.model.Cat
 )
 abstract class CatLifeDatabase : RoomDatabase() {
 
-    abstract fun catDAO(): ICatDAO
+    abstract fun catDAO(): CatDAO
 
     companion object {
         @Volatile
