@@ -62,7 +62,7 @@ private fun CatListItem(cat: Cat) {
     ) {
         Column(modifier = Modifier.padding(5.dp)) {
             Text(text = "Name: ${cat.name}", color = MaterialTheme.colors.secondaryVariant)
-            Text(text = "Age: ${cat.age}", color = MaterialTheme.colors.secondaryVariant)
+            Text(text = "Age: ${cat.birthdate}", color = MaterialTheme.colors.secondaryVariant)
         }
     }
 }

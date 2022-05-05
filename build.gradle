@@ -2,12 +2,13 @@
 buildscript {
     ext {
         composeVersion = '1.1.1'
-        coroutines = '1.6.0'
+        coroutines = '1.6.1'
         roomVersion = '2.4.2'
         lifecycleVersion = '2.4.1'
-        hiltVersion = '2.40.5'
+        hiltVersion = '2.41'
         kotlinVersion = "1.6.10"
-        composeNavigationVersion = "2.4.1"
+        composeNavigationVersion = "2.4.2"
+        coilVersion = "1.4.0"
     }
 
     repositories {

@@ -87,10 +87,7 @@ private fun CatLifeApp(
                     Scaffold(
                         topBar = { CatLifeTopBar(stringResource(R.string.add_cat_title)) },
                         content = {
-                            CatFormBody(
-                                addCatViewModel,
-                                contentPadding
-                            )
+                            CatFormBody(addCatViewModel)
                         }
                     )
                 }

@@ -1,63 +1,80 @@
 package com.ms.catlife.presentation.screen.addCatForm
 
 import android.annotation.SuppressLint
-import android.content.Context
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dsc.form_builder.FormState
-import com.dsc.form_builder.TextFieldState
-import com.dsc.form_builder.Validators
-import com.ms.catlife.R
 import com.ms.catlife.domain.model.Cat
-import com.ms.catlife.domain.useCase.CatUseCases
+import com.ms.catlife.domain.use_case.CatUseCases
+import com.ms.catlife.domain.use_case.add_cat_form.ValidationUseCases
+import com.ms.catlife.presentation.add_cat_form.AddCatFormEvent
+import com.ms.catlife.presentation.add_cat_form.AddCatFormState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AddCatViewModel @Inject constructor(
-    @ApplicationContext val application: Context,
-    private val catUseCases: CatUseCases
+    private val catUseCases: CatUseCases,
+    private val validationUseCases: ValidationUseCases
 ) : ViewModel() {
 
-    var formState = FormState(
-        fields = listOf(
-            TextFieldState<String>(
-                name = application.getString(R.string.name_of_the_cat),
-                validators = listOf(
-                    Validators.Required(application.getString(R.string.should_not_be_empty))
-                )
-            ),
-            TextFieldState(
-                name = application.getString(R.string.weight),
-                transform = { it.toFloat() },
-                validators = listOf(
-                    Validators.Required(),
-                    Validators.MinValue(0.1.toInt(), application.getString(R.string.weight_error_message)),
-                    Validators.MaxValue(currentLocale(), application.getString(R.string.weight_error_message))
-                )
-            ),
-            TextFieldState<String>(
-                name = application.getString(R.string.race),
-                validators = listOf(Validators.Required(application.getString(R.string.should_not_be_empty)))
-            ),
-            TextFieldState<String>(
-                name = application.getString(R.string.coat),
-                validators = listOf(Validators.Required(application.getString(R.string.should_not_be_empty)))
-            ),
-            TextFieldState<String>(
-                name = application.getString(R.string.diseases)
-            )
-        )
-    )
+    var state by mutableStateOf(AddCatFormState())
 
-    private fun currentLocale(): Int = if (Locale.getDefault().language != Locale.FRENCH.toString()) 49 else 22
+    private val validationEventChannel = Channel<ValidationEvent>()
+    val validationEvents = validationEventChannel.receiveAsFlow()
+
+    fun onEvent(event: AddCatFormEvent) {
+        when (event) {
+            is AddCatFormEvent.CatPictureChanged -> {
+                state = state.copy(catPictureUri = event.pictureUri)
+            }
+            is AddCatFormEvent.CatNameChanged -> {
+                state = state.copy(catName = event.catName)
+            }
+            is AddCatFormEvent.CatWeightChanged -> {
+                state = state.copy(weight = event.weight)
+            }
+            is AddCatFormEvent.Submit -> {
+                submitData()
+            }
+        }
+    }
+
+    private fun submitData() {
+        val catNameResult = validationUseCases.validateCatNameUseCase.execute(state.catName)
+        val catWeightResult = validationUseCases.validateCatWeightUseCase.execute(state.weight)
+
+        val hasError = listOf(
+            catNameResult,
+            catWeightResult
+        ).any { !it.successful }
+
+        state = state.copy(
+            catNameError = catNameResult.errorMessage,
+            weightError = catWeightResult.errorMessage
+        )
+
+        if (hasError) {
+            return
+        }
+
+        viewModelScope.launch {
+            validationEventChannel.send(ValidationEvent.Success)
+        }
+    }
 
     fun insertCat(cat: Cat) =
         viewModelScope.launch {
             catUseCases.insertCatUseCase.invoke(cat)
         }
+
+    sealed class ValidationEvent {
+        object Success : ValidationEvent()
+    }
 }

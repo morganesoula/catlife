@@ -1,10 +1,13 @@
 package com.ms.catlife.di
 
 import com.ms.catlife.domain.repository.CatRepository
-import com.ms.catlife.domain.useCase.CatUseCases
-import com.ms.catlife.domain.useCase.DeleteCatUseCase
-import com.ms.catlife.domain.useCase.GetAllCatsUseCase
-import com.ms.catlife.domain.useCase.InsertCatUseCase
+import com.ms.catlife.domain.use_case.CatUseCases
+import com.ms.catlife.domain.use_case.DeleteCatUseCase
+import com.ms.catlife.domain.use_case.GetAllCatsUseCase
+import com.ms.catlife.domain.use_case.InsertCatUseCase
+import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatName
+import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatWeight
+import com.ms.catlife.domain.use_case.add_cat_form.ValidationUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,3 +24,4 @@ object CatUseCaseModule {
         getAllCatsUseCase = GetAllCatsUseCase(catRepository)
     )
 }
+

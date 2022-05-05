@@ -89,7 +89,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     implementation "androidx.compose.material:material:$rootProject.composeVersion"
-    implementation "androidx.compose.runtime:runtime-livedata:1.2.0-alpha05"
+    implementation "androidx.compose.runtime:runtime-livedata:1.2.0-alpha08"
 
     // Compose - Constraint layout
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0"
@@ -116,6 +116,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    // Coil
+    implementation "io.coil-kt:coil-compose:$rootProject.coilVersion"
+
+    // Accompanist
+    implementation "com.google.accompanist:accompanist-insets:0.24.1-alpha"
+
 }
 
 kapt {
