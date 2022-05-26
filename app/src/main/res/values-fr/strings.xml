@@ -89,4 +89,13 @@
     <string name="turkish_van">Turc de Van</string>
     <string name="york_chocolate">York Chocolat</string>
     <string name="european">Européen</string>
+    <string name="add_birthdate">Ajouter une date de naissance*</string>
+    <string name="cat_name">Nom du chat*</string>
+    <string name="submit_cat">Ajouter ce chat !</string>
+    <string name="can_not_be_blank">Doit être renseigné</string>
+    <string name="can_not_include_numbers">Ne peut pas inclure de nombre</string>
+    <string name="weight_limits">Le poids devrait être compris entre 0,1 et 22 kilos</string>
+    <string name="add_vaccine">Dernière date de vaccination</string>
+    <string name="add_deworming">Dernière fois qu\'un vermifuge a été donné</string>
+    <string name="add_flea">Dernière fois qu\'un anti-puce a été donné</string>
 </resources>

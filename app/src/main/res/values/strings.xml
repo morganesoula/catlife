@@ -4,9 +4,9 @@
     <string name="add_cat_title">Add a new cat</string>
     <string name="title_activity_splashscreen" translatable="false">Splashscreen</string>
 
-
     // FORM
     <string name="name_of_the_cat">Name of the cat*</string>
+    <string name="cat_name">Cat name*</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -17,6 +17,10 @@
     <string name="coat">Coat*</string>
     <string name="coat_placeholder">Color of the fur*</string>
     <string name="birthdate">Birthdate*</string>
+    <string name="add_birthdate">Add birthdate*</string>
+    <string name="add_vaccine">Add last vaccine shot date</string>
+    <string name="add_deworming">Add last deworming treatment date</string>
+    <string name="add_flea">Add last flea treatment date</string>
     <string name="race">Race*</string>
     <string name="diseases">Known diseases</string>
     <string name="diseases_placeholder">Fill with your cat medical issues. Leave empty if your cat is doing just fine.</string>
@@ -27,6 +31,12 @@
     <string name="add_cat_submit">Submit cat!</string>
     <string name="name_lenght_error">Name should have at least one character</string>
     <string name="should_not_be_empty">Field should not be empty</string>
+    <string name="submit_cat">Add this cat!</string>
+
+    // Form error
+    <string name="can_not_be_blank">Can not be blank</string>
+    <string name="can_not_include_numbers">Can not include numbers</string>
+    <string name="weight_limits">Weight should be included between 0.1 and 47 lbs</string>
 
     // Cat race
     <string name="abyssinian">Abyssinian</string>

@@ -24,4 +24,14 @@ object DateFormatter {
 
         return null
     }
+
+    fun getDefaultDateInMillis(): Long {
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DATE)
+        cal.clear()
+        cal.set(year, month, day)
+        return cal.timeInMillis
+    }
 }

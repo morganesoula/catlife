@@ -11,6 +11,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -87,7 +89,7 @@ private fun CatLifeApp(
                     Scaffold(
                         topBar = { CatLifeTopBar(stringResource(R.string.add_cat_title)) },
                         content = {
-                            CatFormBody(addCatViewModel)
+                            CatFormBody(addCatViewModel, contentPadding)
                         }
                     )
                 }

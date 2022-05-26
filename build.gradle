@@ -5,10 +5,10 @@ buildscript {
         coroutines = '1.6.1'
         roomVersion = '2.4.2'
         lifecycleVersion = '2.4.1'
-        hiltVersion = '2.41'
+        hiltVersion = '2.42'
         kotlinVersion = "1.6.10"
         composeNavigationVersion = "2.4.2"
-        coilVersion = "1.4.0"
+        coilVersion = "2.0.0"
     }
 
     repositories {

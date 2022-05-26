@@ -1,9 +1,10 @@
 package com.ms.catlife.domain.use_case.add_cat_form
 
-class ValidateCatName {
+class ValidateCatCoat {
 
-    fun execute(catName: String): ValidationResult {
-        if (catName.isBlank()) {
+    fun execute(catCoat: String): ValidationResult {
+
+        if (catCoat.isBlank()) {
             return ValidationResult(
                 false, "blankError"
             )
@@ -11,7 +12,7 @@ class ValidateCatName {
 
         val numericRegex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
 
-        if (catName.matches(numericRegex)) {
+        if (catCoat.matches(numericRegex)) {
             return ValidationResult(
                 false, "noNumberError"
             )
