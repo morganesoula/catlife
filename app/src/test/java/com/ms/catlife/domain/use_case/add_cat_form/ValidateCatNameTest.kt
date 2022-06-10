@@ -1,8 +1,8 @@
 package com.ms.catlife.domain.use_case.add_cat_form
 
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatName
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 
 class ValidateCatNameTest {

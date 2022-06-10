@@ -1,14 +1,13 @@
 package com.ms.catlife.di
 
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatBirthdate
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatCoat
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatDewormingDate
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatDiseases
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatFleaDate
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatName
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatVaccineDate
-import com.ms.catlife.domain.use_case.add_cat_form.ValidateCatWeight
-import com.ms.catlife.domain.use_case.add_cat_form.ValidationUseCases
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatBirthdate
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatCoat
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatDewormingDate
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatFleaDate
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatName
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatVaccineDate
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidateCatWeight
+import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidationUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +21,6 @@ object ValidationUseCaseModule {
         ValidateCatName(),
         ValidateCatWeight(),
         ValidateCatCoat(),
-        ValidateCatDiseases(),
         ValidateCatBirthdate(),
         ValidateCatVaccineDate(),
         ValidateCatFleaDate(),
