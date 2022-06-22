@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="gender">Genre</string>
     <string name="male">Mâle</string>
     <string name="female">Femelle</string>
     <string name="birthdate">Date de naissance*</string>
     <string name="race">Race*</string>
-    <string name="name_of_the_cat">Nom du chat*</string>
     <string name="diseases">Maladies connues</string>
     <string name="weight">Poids (kg)*</string>
-    <string name="coat">Robe*</string>
     <string name="coat_placeholder">Couleur de la fourrure*</string>
     <string name="add_cat_title">Ajouter un nouveau chat</string>
-    <string name="add_cat_submit">Ajouter ce chat!</string>
     <string name="last_vaccine">Date du dernier vaccin</string>
     <string name="last_de_worming">Date du dernier vermifuge</string>
     <string name="last_flea_treatment">Date du dernier antipuce</string>
-    <string name="empty">Inconnu</string>
-    <string name="weight_error_message">Le poids devrait être compris entre 1 et 22 kilos inclus</string>
-    <string name="diseases_placeholder">Indiquez les problèmes médicaux de votre chat. S\'il n\'en possède pas, ignorez cette partie.</string>
     <string name="inconsistent">Valeur incohérente</string>
-    <string name="name_lenght_error">Le nom devrait comporter au moins un caractère</string>
     <string name="should_not_be_empty">Ce champ est obligatoire</string>
     <string name="uri_cat_picture">URI de la photo du chat</string>
     <string name="profile_picture">Photo de profil</string>
@@ -92,9 +84,6 @@
     <string name="add_birthdate">Ajouter une date de naissance*</string>
     <string name="cat_name">Nom du chat*</string>
     <string name="submit_cat">Ajouter ce chat !</string>
-    <string name="can_not_be_blank">Doit être renseigné</string>
-    <string name="can_not_include_numbers">Ne peut pas inclure de nombre</string>
-    <string name="weight_limits">Le poids devrait être compris entre 0,1 et 22 kilos</string>
     <string name="add_vaccine">Dernière date de vaccination</string>
     <string name="add_deworming">Dernière fois qu\'un vermifuge a été donné</string>
     <string name="add_flea">Dernière fois qu\'un anti-puce a été donné</string>

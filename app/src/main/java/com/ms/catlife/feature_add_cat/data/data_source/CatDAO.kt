@@ -19,6 +19,9 @@ interface CatDAO {
     @Query("SELECT * FROM Cat WHERE id = :id")
     suspend fun getCatById(id: Int): Cat?
 
+    @Query("SELECT * FROM Cat WHERE name = :name")
+    suspend fun getCatByName(name: String): Cat?
+
     @Delete
     suspend fun deleteCat(cat: Cat)
 }

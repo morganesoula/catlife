@@ -10,6 +10,7 @@ import java.util.Locale
 
 object DateFormatter {
 
+    @Suppress("SameReturnValue")
     fun longToString(milliseconds: Long?, context: Context): String? {
         milliseconds?.let {
             val currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).times(1000)

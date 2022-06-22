@@ -10,11 +10,11 @@ class ValidateCatCoat {
             )
         }
 
-        val numericRegex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
+        val numericRegex = "-?\\d+(\\.\\d+)?".toRegex()
 
-        if (catCoat.matches(numericRegex)) {
+        if (catCoat.contains(numericRegex)) {
             return ValidationResult(
-                false, "noNumberError"
+                false, "no numbers allowed"
             )
         }
 

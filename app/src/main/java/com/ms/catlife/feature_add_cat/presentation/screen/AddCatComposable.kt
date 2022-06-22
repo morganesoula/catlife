@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalMaterialApi::class)
+@file:Suppress("unused")
 
 package com.ms.catlife.feature_add_cat.presentation.screen
 
@@ -60,6 +61,7 @@ import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
 import com.ms.catlife.theme.CatLifeTheme
 import com.ms.catlife.util.DateFormatter
 
+@Suppress("FunctionName")
 @Composable
 fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, content: PaddingValues) {
     CatLifeTheme {
@@ -170,7 +172,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Button(
                 onClick = {
                     showPickerDate(
-                        context.findActivity()!!, AddCatDateEvent.onBirthdayChanged(0L), addCatViewModel
+                        context.findActivity()!!, AddCatDateEvent.OnBirthdayChanged(0L), addCatViewModel
                     )
                 }, modifier = Modifier.fillMaxWidth()
             ) {
@@ -282,7 +284,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Button(
                 onClick = {
                     showPickerDate(
-                        context.findActivity()!!, AddCatDateEvent.onVaccineChanged(0L), addCatViewModel
+                        context.findActivity()!!, AddCatDateEvent.OnVaccineChanged(0L), addCatViewModel
                     )
                 }, modifier = Modifier.fillMaxWidth()
             ) {
@@ -317,7 +319,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Button(
                 onClick = {
                     showPickerDate(
-                        context.findActivity()!!, AddCatDateEvent.onFleaChanged(0L), addCatViewModel
+                        context.findActivity()!!, AddCatDateEvent.OnFleaChanged(0L), addCatViewModel
                     )
                 }, modifier = Modifier.fillMaxWidth()
             ) {
@@ -352,7 +354,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Button(
                 onClick = {
                     showPickerDate(
-                        context.findActivity()!!, AddCatDateEvent.onDewormingChanged(0L), addCatViewModel
+                        context.findActivity()!!, AddCatDateEvent.OnDewormingChanged(0L), addCatViewModel
                     )
                 }, modifier = Modifier.fillMaxWidth()
             ) {

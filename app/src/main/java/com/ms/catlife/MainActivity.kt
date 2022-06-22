@@ -21,8 +21,8 @@ import androidx.navigation.compose.rememberNavController
 import com.ms.catlife.core.presentation.navigation.CatLifeScreen
 import com.ms.catlife.feature_add_cat.presentation.screen.AddCatViewModel
 import com.ms.catlife.feature_add_cat.presentation.screen.CatFormBody
-import com.ms.catlife.feature_common.screen.util.CatLifeTopBar
-import com.ms.catlife.feature_common.screen.util.HomeFloatingActionButton
+import com.ms.catlife.core.presentation.CatLifeTopBar
+import com.ms.catlife.core.presentation.HomeFloatingActionButton
 import com.ms.catlife.feature_main.presentation.screen.HomeCatBody
 import com.ms.catlife.feature_main.presentation.screen.MainViewModel
 import com.ms.catlife.theme.CatLifeTheme

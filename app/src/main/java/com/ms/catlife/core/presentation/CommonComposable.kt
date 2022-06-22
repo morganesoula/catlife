@@ -1,4 +1,4 @@
-package com.ms.catlife.feature_common.screen.util
+package com.ms.catlife.core.presentation
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -49,38 +49,4 @@ fun HomeFloatingActionButton(navController: NavController) {
     ) {
         Icon(Icons.Default.Add, contentDescription = "Add new cat")
     }
-}
-
-@Composable
-fun ErrorComposable(error: String?) {
-    Text(
-        text = error ?: stringResource(R.string.should_not_be_empty),
-        color = Color.Red,
-        modifier = Modifier.fillMaxWidth().padding(start = 4.dp, end = 4.dp, bottom = 10.dp),
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun ImagePickedView(
-    modifier: Modifier = Modifier,
-    lastSelectedImage: Uri?,
-    onSelection: (Uri?) -> Unit
-) {
-    val galleryLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) {
-        onSelection(it)
-    }
-
-    Image(
-        modifier = modifier
-            .size(100.dp)
-            .clip(CircleShape)
-            .background(Color.LightGray)
-            .clickable {
-                galleryLauncher.launch("image/*")
-            },
-        painter = rememberAsyncImagePainter(lastSelectedImage),
-        contentDescription = stringResource(R.string.profile_picture),
-        contentScale = ContentScale.Crop
-    )
 }

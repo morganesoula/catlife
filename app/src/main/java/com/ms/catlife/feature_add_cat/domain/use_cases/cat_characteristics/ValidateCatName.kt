@@ -9,11 +9,11 @@ class ValidateCatName {
             )
         }
 
-        val numericRegex = "-?[0-9]+(\\.[0-9]+)?".toRegex()
+        val numericRegex = "-?\\d+(\\.\\d+)?".toRegex()
 
-        if (catName.matches(numericRegex)) {
+        if (catName.contains(numericRegex)) {
             return ValidationResult(
-                false, "noNumberError"
+                false, "no numbers allowed"
             )
         }
 

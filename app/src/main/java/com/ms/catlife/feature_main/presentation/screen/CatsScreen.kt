@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
@@ -43,7 +42,7 @@ private fun Welcome(mainViewModel: MainViewModel) {
     MaterialTheme {
         Column {
             Box {
-                Text(modifier = Modifier.align(Alignment.TopCenter), text = "Bienvenue")
+                Text(modifier = Modifier.align(Alignment.TopCenter), text = "Welcome")
             }
 
             OrderSection(

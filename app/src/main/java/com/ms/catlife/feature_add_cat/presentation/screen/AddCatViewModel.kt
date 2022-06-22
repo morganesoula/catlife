@@ -83,16 +83,16 @@ class AddCatViewModel @Inject constructor(
 
     fun onDateEvent(dateEvent: AddCatDateEvent, date: Long) {
         state = when (dateEvent) {
-            is AddCatDateEvent.onBirthdayChanged -> {
+            is AddCatDateEvent.OnBirthdayChanged -> {
                 state.copy(catBirthdate = date)
             }
-            is AddCatDateEvent.onDewormingChanged -> {
+            is AddCatDateEvent.OnDewormingChanged -> {
                 state.copy(catDewormingDate = date)
             }
-            is AddCatDateEvent.onFleaChanged -> {
+            is AddCatDateEvent.OnFleaChanged -> {
                 state.copy(catFleaDate = date)
             }
-            is AddCatDateEvent.onVaccineChanged -> {
+            is AddCatDateEvent.OnVaccineChanged -> {
                 state.copy(catVaccineDate = date)
             }
         }
