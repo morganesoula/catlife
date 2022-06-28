@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "977586566002",
+    "project_id": "catlife-7405c",
+    "storage_bucket": "catlife-7405c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977586566002:android:c4f12fbdce0a37229123eb",
+        "android_client_info": {
+          "package_name": "com.ms.catlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977586566002-ob6eei2tf86e81nq5j92jojcm4alacli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAco5wXt5FT_StneIeCLOO9mfHmpONCauo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977586566002-ob6eei2tf86e81nq5j92jojcm4alacli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
