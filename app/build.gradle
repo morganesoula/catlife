@@ -8,6 +8,24 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+def build_param = "${build}";
+
+if (build_param != "dev") {
+    //exclude production build
+    android.variantFilter { variant ->
+        if (variant.buildType.name.equals('dev')) {
+            variant.setIgnore(true);
+        }
+    }
+} else {
+    //exclude all except production build
+    android.variantFilter { variant ->
+        if (!variant.buildType.name.equals('dev')) {
+            variant.setIgnore(true);
+        }
+    }
+}
+
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
@@ -30,6 +48,11 @@ android {
     }
 
     buildTypes {
+        dev {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
