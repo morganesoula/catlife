@@ -1,4 +1,4 @@
-package com.ms.catlife.di
+package com.ms.catlife.feature_add_cat.di
 
 import android.app.Application
 import androidx.room.Room
@@ -18,16 +18,15 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CatLifeDatabaseModule {
+object TestCatLifeModule {
 
     @Provides
     @Singleton
     fun provideCatLifeDatabase(app: Application): CatDatabase =
-        Room.databaseBuilder(
+        Room.inMemoryDatabaseBuilder(
             app,
-            CatDatabase::class.java,
-            CatDatabase.DATABASE_NAME
-        ).fallbackToDestructiveMigration().build()
+            CatDatabase::class.java
+        ).build()
 
     @Provides
     @Singleton

@@ -18,11 +18,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.ms.catlife.core.presentation.CatLifeTopBar
+import com.ms.catlife.core.presentation.HomeFloatingActionButton
 import com.ms.catlife.core.presentation.navigation.CatLifeScreen
 import com.ms.catlife.feature_add_cat.presentation.screen.AddCatViewModel
 import com.ms.catlife.feature_add_cat.presentation.screen.CatFormBody
-import com.ms.catlife.core.presentation.CatLifeTopBar
-import com.ms.catlife.core.presentation.HomeFloatingActionButton
 import com.ms.catlife.feature_main.presentation.screen.HomeCatBody
 import com.ms.catlife.feature_main.presentation.screen.MainViewModel
 import com.ms.catlife.theme.CatLifeTheme
@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val navController = rememberNavController()
             val backStackEntry = navController.currentBackStackEntryAsState()
-            val currentScreen = CatLifeScreen.fromRoute(
-                backStackEntry.value?.destination?.route
-            )
+            val currentScreen = backStackEntry.value?.destination?.route
 
             CatLifeApp(navController, currentScreen)
         }
@@ -47,9 +45,9 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-private fun CatLifeApp(
+fun CatLifeApp(
     navController: NavHostController,
-    currentScreen: CatLifeScreen,
+    currentScreen: String?,
     addCatViewModel: AddCatViewModel = hiltViewModel(),
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
@@ -61,7 +59,7 @@ private fun CatLifeApp(
             isFloatingActionButtonDocked = true,
             floatingActionButtonPosition = FabPosition.Center,
             floatingActionButton = {
-                if (currentScreen == CatLifeScreen.Home) {
+                if (currentScreen == CatLifeScreen.HomeScreen.route) {
                     HomeFloatingActionButton(navController)
                 }
             },
@@ -74,16 +72,16 @@ private fun CatLifeApp(
         ) { contentPadding ->
             NavHost(
                 navController = navController,
-                startDestination = CatLifeScreen.Home.name
+                startDestination = CatLifeScreen.HomeScreen.route
             ) {
-                composable(CatLifeScreen.Home.name) {
+                composable(CatLifeScreen.HomeScreen.route) {
                     Scaffold(
                         topBar = { CatLifeTopBar(stringResource(R.string.app_name)) },
                         content = { HomeCatBody(contentPadding, mainViewModel, scaffoldState, scope) }
                     )
                 }
 
-                composable(CatLifeScreen.AddCatForm.name) {
+                composable(CatLifeScreen.AddCatFormScreen.route) {
                     Scaffold(
                         topBar = { CatLifeTopBar(stringResource(R.string.add_cat_title)) },
                         content = {

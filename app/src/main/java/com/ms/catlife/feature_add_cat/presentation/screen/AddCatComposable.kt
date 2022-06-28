@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
 @file:Suppress("unused")
 
 package com.ms.catlife.feature_add_cat.presentation.screen
@@ -6,6 +5,7 @@ package com.ms.catlife.feature_add_cat.presentation.screen
 import android.content.Context
 import android.content.ContextWrapper
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -47,6 +47,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -56,14 +57,17 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.ms.catlife.R
+import com.ms.catlife.core.util.TestTags
 import com.ms.catlife.feature_add_cat.presentation.AddCatDateEvent
 import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
 import com.ms.catlife.theme.CatLifeTheme
 import com.ms.catlife.util.DateFormatter
 
+@OptIn(ExperimentalMaterialApi::class)
 @Suppress("FunctionName")
 @Composable
 fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, content: PaddingValues) {
+
     CatLifeTheme {
         val state = addCatViewModel.state
         val context = LocalContext.current
@@ -85,6 +89,8 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         var expanded by remember { mutableStateOf(false) }
         var selectedRaceText by remember { mutableStateOf(catRaces[0]) }
 
+
+
         LaunchedEffect(context) {
             addCatViewModel.validationEvents.collect { event ->
                 when (event) {
@@ -94,7 +100,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         }
 
         Column(
-            modifier = Modifier.padding(content).fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
+            modifier = Modifier.padding(content!!).fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
         ) {
@@ -124,7 +130,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 },
                 label = { Text(stringResource(R.string.cat_name)) },
                 isError = state.catNameError != null,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag(TestTags.CAT_NAME_TEXT_FIELD),
                 placeholder = {
                     Text(stringResource(R.string.cat_name))
                 },
@@ -204,14 +210,20 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Spacer(modifier = Modifier.height(16.dp))
 
             // section race
-            ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                onExpandedChange = { expanded = !expanded }
+            ) {
                 TextField(modifier = Modifier.fillMaxWidth(),
                     readOnly = true,
                     value = selectedRaceText,
                     onValueChange = { },
                     label = { Text(stringResource(R.string.race)) })
 
-                ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
                     catRaces.forEach { selectedRace ->
                         DropdownMenuItem(onClick = {
                             selectedRaceText = selectedRace
@@ -234,7 +246,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 },
                 label = { Text(stringResource(R.string.weight)) },
                 isError = state.weightError != null,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag(TestTags.CAT_WEIGHT_FIELD),
                 placeholder = {
                     Text(stringResource(R.string.weight))
                 },
@@ -262,7 +274,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 },
                 label = { Text(stringResource(R.string.coat_placeholder)) },
                 isError = state.catCoatError != null,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag(TestTags.CAT_COAT_FIELD),
                 placeholder = {
                     Text(stringResource(R.string.coat_placeholder))
                 },
@@ -413,9 +425,15 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             // section submit
             Button(
-                onClick = { addCatViewModel.onEvent(AddCatFormEvent.Submit) }, modifier = Modifier.align(Alignment.End)
+                modifier = Modifier.align(Alignment.End).testTag(TestTags.SUBMIT_CAT_BUTTON),
+                onClick = {
+                    Log.d("XXXX", "Button clicked")
+                    addCatViewModel.onEvent(AddCatFormEvent.Submit)
+                }
             ) {
-                Text(text = stringResource(R.string.submit_cat))
+                Text(
+                    text = stringResource(R.string.submit_cat)
+                )
             }
 
             BackHandler {
