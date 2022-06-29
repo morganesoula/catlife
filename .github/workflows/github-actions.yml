@@ -19,7 +19,7 @@ jobs:
     - name: Ui Test
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 23
+        api-level: 31
         target: default
         arch: x86
         profile: Nexus 6
