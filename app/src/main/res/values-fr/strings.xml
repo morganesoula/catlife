@@ -87,4 +87,11 @@
     <string name="add_vaccine">Dernière date de vaccination</string>
     <string name="add_deworming">Dernière fois qu\'un vermifuge a été donné</string>
     <string name="add_flea">Dernière fois qu\'un anti-puce a été donné</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="neutered">Stérilisé</string>
+    <string name="blank_error">Champ obligatoire</string>
+    <string name="wrong_input_format">Donnée non conforme</string>
+    <string name="weight_error">Le poids devrait être compris entre 0.1 kg et 22 kilos</string>
+    <string name="no_number_allowed">Les nombres ne sont pas autorisés</string>
 </resources>

@@ -20,11 +20,14 @@
     <string name="last_vaccine">Date of last vaccine</string>
     <string name="last_de_worming">Date of last de-worming</string>
     <string name="last_flea_treatment">Date of last flea treatment</string>
-    <string name="inconsistent">Inconsistent value</string>
-    <string name="should_not_be_empty">Field should not be empty</string>
     <string name="submit_cat">Add this cat!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="neutered">Neutered</string>
 
     // Form error
+    <string name="inconsistent">Inconsistent value</string>
+    <string name="should_not_be_empty">Field should not be empty</string>
 
     // Cat race
     <string name="abyssinian">Abyssinian</string>
@@ -93,4 +96,9 @@
     <string name="turkish_angora">Turkish Angora</string>
     <string name="turkish_van">Turkish Van</string>
     <string name="york_chocolate">York Chocolate</string>
+    <string name="blank_error">Mandatory field</string>
+    <string name="wrong_input_format">Wrong input format</string>
+    <string name="weight_error">Weight should be between 0.1 lbs and 49 lbs</string>
+    <string name="no_number_allowed">Numbers are not allowed</string>
+
 </resources>

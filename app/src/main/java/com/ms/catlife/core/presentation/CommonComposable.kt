@@ -27,13 +27,8 @@ fun CatLifeTopBar(
 
 @Composable
 fun HomeFloatingActionButton(navController: NavController) {
-    val context = LocalContext.current
-
     FloatingActionButton(
-        onClick = {
-            Toast.makeText(context, "Ready to add cat", Toast.LENGTH_SHORT).show()
-            navController.navigate(CatLifeScreen.AddCatFormScreen.route)
-        },
+        onClick = { navController.navigate(CatLifeScreen.AddCatFormScreen.route) },
         backgroundColor = MaterialTheme.colors.secondaryVariant
     ) {
         Icon(Icons.Default.Add, contentDescription = "Add new cat")

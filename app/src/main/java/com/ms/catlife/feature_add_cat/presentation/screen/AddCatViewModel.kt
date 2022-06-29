@@ -54,27 +54,39 @@ class AddCatViewModel @Inject constructor(
             is AddCatFormEvent.CatGenderChanged -> {
                 state = state.copy(catGender = event.gender)
             }
+
             is AddCatFormEvent.CatPictureChanged -> {
                 state = state.copy(catPictureUri = event.pictureUri)
             }
+
             is AddCatFormEvent.CatNameChanged -> {
                 state = state.copy(catName = event.catName)
             }
+
+            is AddCatFormEvent.CatNeuterdChanged -> {
+                state = state.copy(catNeutered = event.neutered)
+            }
+
             is AddCatFormEvent.CatWeightChanged -> {
                 state = state.copy(weight = event.weight)
             }
+
             is AddCatFormEvent.CatCoatChanged -> {
                 state = state.copy(catCoat = event.coat)
             }
+
             is AddCatFormEvent.CatRaceChanged -> {
                 state = state.copy(catRace = event.race)
             }
+
             is AddCatFormEvent.CatDiseasesChanged -> {
                 state = state.copy(catDiseases = event.diseases)
             }
+
             is AddCatFormEvent.Submit -> {
                 submitData()
             }
+
             is AddCatFormEvent.OnBackPressed -> run {
                 state = AddCatFormState()
             }
@@ -86,12 +98,15 @@ class AddCatViewModel @Inject constructor(
             is AddCatDateEvent.OnBirthdayChanged -> {
                 state.copy(catBirthdate = date)
             }
+
             is AddCatDateEvent.OnDewormingChanged -> {
                 state.copy(catDewormingDate = date)
             }
+
             is AddCatDateEvent.OnFleaChanged -> {
                 state.copy(catFleaDate = date)
             }
+
             is AddCatDateEvent.OnVaccineChanged -> {
                 state.copy(catVaccineDate = date)
             }
@@ -137,6 +152,7 @@ class AddCatViewModel @Inject constructor(
                     id = currentCatId,
                     name = state.catName,
                     gender = state.catGender,
+                    neutered = state.catNeutered,
                     profilePicture = state.catPictureUri,
                     birthdate = state.catBirthdate,
                     weight = state.weight.toFloat(),
@@ -157,7 +173,8 @@ class AddCatViewModel @Inject constructor(
     }
 
     private fun initCat(cat: Cat) {
-        state = state.copy(catName = cat.name).copy(catGender = cat.gender).copy(catRace = cat.race)
+        state = state.copy(catName = cat.name).copy(catGender = cat.gender).copy(catNeutered = cat.neutered)
+            .copy(catRace = cat.race)
             .copy(catBirthdate = cat.birthdate).copy(weight = cat.weight.toString()).copy(catCoat = cat.coat)
             .copy(catVaccineDate = cat.vaccineDate ?: 0).copy(catFleaDate = cat.fleaDate ?: 0)
             .copy(catDiseases = cat.diseases ?: "").copy(catDewormingDate = cat.dewormingDate ?: 0)

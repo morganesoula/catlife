@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Cat(
     @PrimaryKey val id: Int? = null,
     val gender: String,
+    val neutered: String,
     val name: String,
     val profilePicture: String? = null,
     val birthdate: Long,

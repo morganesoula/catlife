@@ -84,12 +84,17 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             addCatViewModel.onEvent(AddCatFormEvent.CatGenderChanged(genderPicked))
         }
 
+        // Neutered
+        val neuteredOptions = listOf(stringResource(R.string.yes), stringResource(R.string.no))
+        val neuteredSelected = state.catNeutered.ifEmpty { stringResource(R.string.yes) }
+        val onNeuteredSelectionChangeed = { neuteredValue: String ->
+            addCatViewModel.onEvent(AddCatFormEvent.CatNeuterdChanged(neuteredValue))
+        }
+
         // Races
         val catRaces: List<String> = getAllRaces(context)
         var expanded by remember { mutableStateOf(false) }
         var selectedRaceText by remember { mutableStateOf(catRaces[0]) }
-
-
 
         LaunchedEffect(context) {
             addCatViewModel.validationEvents.collect { event ->
@@ -100,7 +105,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         }
 
         Column(
-            modifier = Modifier.padding(content!!).fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
+            modifier = Modifier.padding(content).fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
         ) {
@@ -117,34 +122,6 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 ),
                 contentDescription = stringResource(R.string.uri_cat_picture)
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // section name
-            TextField(
-                value = state.catName,
-                onValueChange = {
-                    addCatViewModel.onEvent(
-                        AddCatFormEvent.CatNameChanged(it)
-                    )
-                },
-                label = { Text(stringResource(R.string.cat_name)) },
-                isError = state.catNameError != null,
-                modifier = Modifier.fillMaxWidth().testTag(TestTags.CAT_NAME_TEXT_FIELD),
-                placeholder = {
-                    Text(stringResource(R.string.cat_name))
-                },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                singleLine = true
-            )
-
-            if (state.catNameError != null) {
-                Text(
-                    text = state.catNameError,
-                    color = MaterialTheme.colors.error,
-                    modifier = Modifier.align(Alignment.End)
-                )
-            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -170,6 +147,34 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                             )
                     )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // section name
+            TextField(
+                value = state.catName,
+                onValueChange = {
+                    addCatViewModel.onEvent(
+                        AddCatFormEvent.CatNameChanged(it)
+                    )
+                },
+                label = { Text(stringResource(R.string.cat_name)) },
+                isError = state.catNameError != null,
+                modifier = Modifier.fillMaxWidth().testTag(TestTags.CAT_NAME_TEXT_FIELD),
+                placeholder = {
+                    Text(stringResource(R.string.cat_name))
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+                singleLine = true
+            )
+
+            if (state.catNameError != null) {
+                Text(
+                    text = state.catNameError.asString(context),
+                    color = MaterialTheme.colors.error,
+                    modifier = Modifier.align(Alignment.End)
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -201,10 +206,38 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catBirthdateError != null) {
                 Text(
-                    text = state.catBirthdateError,
+                    text = state.catBirthdateError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // section neutered
+            Text(text = stringResource(R.string.neutered), modifier = Modifier.align(Alignment.Start))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                neuteredOptions.forEach { neuteredValuePickedText ->
+                    Text(
+                        text = neuteredValuePickedText,
+                        color = Color.White,
+                        modifier = Modifier.clip(RoundedCornerShape(size = 12.dp))
+                            .clickable { onNeuteredSelectionChangeed(neuteredValuePickedText) }.background(
+                                if (neuteredValuePickedText == neuteredSelected) {
+                                    MaterialTheme.colors.primary
+                                } else {
+                                    Color.LightGray
+                                }
+                            ).padding(
+                                vertical = 12.dp, horizontal = 16.dp
+                            )
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -256,7 +289,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.weightError != null) {
                 Text(
-                    text = state.weightError,
+                    text = state.weightError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -284,7 +317,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catCoatError != null) {
                 Text(
-                    text = state.catCoatError,
+                    text = state.catCoatError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -319,7 +352,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catVaccineDateError != null) {
                 Text(
-                    text = state.catVaccineDateError,
+                    text = state.catVaccineDateError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -354,7 +387,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catFleaDateError != null) {
                 Text(
-                    text = state.catFleaDateError,
+                    text = state.catFleaDateError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -389,7 +422,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catDewormingDateError != null) {
                 Text(
-                    text = state.catDewormingDateError,
+                    text = state.catDewormingDateError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -415,7 +448,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
 
             if (state.catDiseasesError != null) {
                 Text(
-                    text = state.catDiseasesError,
+                    text = state.catDiseasesError.asString(context),
                     color = MaterialTheme.colors.error,
                     modifier = Modifier.align(Alignment.End)
                 )
