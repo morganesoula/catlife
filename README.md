@@ -1,1 +1,1 @@
-[![GitHub Super-Linter](https://github.com/morganesoula/catlife/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Actions Demo](https://github.com/morganesoula/catlife/actions/workflows/github-actions.yml/badge.svg?branch=develop&event=push)](https://github.com/morganesoula/catlife/actions/workflows/github-actions.yml)
