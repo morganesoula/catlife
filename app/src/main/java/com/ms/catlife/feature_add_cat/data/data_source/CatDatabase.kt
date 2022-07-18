@@ -7,7 +7,7 @@ import com.ms.catlife.feature_main.domain.model.Cat
 
 @Database(
     entities = [Cat::class],
-    version = 3,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

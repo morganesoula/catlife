@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Cat Life</string>
     <string name="add_cat_title">Add a new cat</string>
 
-    // FORM
+    // Form
     <string name="cat_name">Cat name*</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -28,6 +28,9 @@
     // Form error
     <string name="inconsistent">Inconsistent value</string>
     <string name="should_not_be_empty">Field should not be empty</string>
+
+    // Home screen
+    <string name="next_events_title">Events to come</string>
 
     // Cat race
     <string name="abyssinian">Abyssinian</string>

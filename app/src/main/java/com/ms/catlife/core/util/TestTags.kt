@@ -1,7 +1,6 @@
 package com.ms.catlife.core.util
 
 object TestTags {
-
     const val CATS_LIST = "CATS_LIST"
     const val WELCOME = "WELCOME"
     const val CAT_NAME_TEXT_FIELD = "CAT_NAME_TEXT_FIELD"

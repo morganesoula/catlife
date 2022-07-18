@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarResult
@@ -19,6 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import com.ms.catlife.R
 import com.ms.catlife.core.util.TestTags
 import com.ms.catlife.feature_main.presentation.cats.CatsEvent
 import com.ms.catlife.feature_main.presentation.screen.components.CatItem
@@ -36,6 +41,7 @@ fun HomeCatBody(
     Column(modifier = Modifier.padding(contentPadding)) {
         Welcome(mainViewModel)
         ListOfCats(mainViewModel, scaffoldState, scope)
+        NextEvents()
     }
 }
 
@@ -64,24 +70,42 @@ fun ListOfCats(mainViewModel: MainViewModel, scaffoldState: ScaffoldState, scope
     MaterialTheme {
         LazyRow(modifier = Modifier.fillMaxWidth().testTag(TestTags.CATS_LIST)) {
             items(mainViewModel.state.cats) { currentCat ->
-                CatItem(
-                    cat = currentCat,
-                    onDeleteClick = {
-                        mainViewModel.onEvent(CatsEvent.DeleteCat(currentCat))
-                        scope.launch {
-                            val result = scaffoldState.snackbarHostState.showSnackbar(
-                                message = "Cat deleted",
-                                actionLabel = "Undo"
-                            )
+                Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp)) {
+                    CatItem(
+                        painter = rememberAsyncImagePainter(
+                            model = ImageRequest.Builder(context)
+                                .data(currentCat.profilePicturePath?.toUri() ?: "")
+                                .build()
+                        ),
+                        catName = currentCat.name,
+                        onDeleteClick = {
+                            mainViewModel.onEvent(CatsEvent.DeleteCat(currentCat))
 
-                            if (result == SnackbarResult.ActionPerformed) {
-                                mainViewModel.onEvent(CatsEvent.RestoreCat)
+                            scope.launch {
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "Cat deleted",
+                                    actionLabel = "Undo"
+                                )
+
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    mainViewModel.onEvent(CatsEvent.RestoreCat)
+                                }
                             }
                         }
-                    },
-                    context = context
-                )
+                    )
+                }
             }
+        }
+    }
+}
+
+@Composable
+fun NextEvents() {
+    val context = LocalContext.current
+
+    MaterialTheme {
+        Card(modifier = Modifier.fillMaxWidth()) {
+            Text(text = context.getString(R.string.next_events_title))
         }
     }
 }

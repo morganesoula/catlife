@@ -1,9 +1,10 @@
 package com.ms.catlife.feature_add_cat.domain.model
 
+import android.net.Uri
 import com.ms.catlife.core.util.UiText
 
 data class AddCatFormState(
-    val catPictureUri: String = "",
+    val catPictureUri: Uri? = null,
     val catGender: String = "",
     val catName: String = "",
     val catNameError: UiText? = null,

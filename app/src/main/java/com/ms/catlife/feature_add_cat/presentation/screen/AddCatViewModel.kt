@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.net.toUri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -55,15 +56,15 @@ class AddCatViewModel @Inject constructor(
                 state = state.copy(catGender = event.gender)
             }
 
-            is AddCatFormEvent.CatPictureChanged -> {
-                state = state.copy(catPictureUri = event.pictureUri)
+            is AddCatFormEvent.OnCatProfilePicturePathChanged -> {
+                state = state.copy(catPictureUri = event.catProfilePicturePath)
             }
 
             is AddCatFormEvent.CatNameChanged -> {
                 state = state.copy(catName = event.catName)
             }
 
-            is AddCatFormEvent.CatNeuterdChanged -> {
+            is AddCatFormEvent.CatNeuteredChanged -> {
                 state = state.copy(catNeutered = event.neutered)
             }
 
@@ -153,7 +154,7 @@ class AddCatViewModel @Inject constructor(
                     name = state.catName,
                     gender = state.catGender,
                     neutered = state.catNeutered,
-                    profilePicture = state.catPictureUri,
+                    profilePicturePath = state.catPictureUri.toString(),
                     birthdate = state.catBirthdate,
                     weight = state.weight.toFloat(),
                     race = state.catRace,
@@ -173,11 +174,18 @@ class AddCatViewModel @Inject constructor(
     }
 
     private fun initCat(cat: Cat) {
-        state = state.copy(catName = cat.name).copy(catGender = cat.gender).copy(catNeutered = cat.neutered)
+        state = state
+            .copy(catName = cat.name)
+            .copy(catGender = cat.gender)
+            .copy(catNeutered = cat.neutered)
             .copy(catRace = cat.race)
-            .copy(catBirthdate = cat.birthdate).copy(weight = cat.weight.toString()).copy(catCoat = cat.coat)
-            .copy(catVaccineDate = cat.vaccineDate ?: 0).copy(catFleaDate = cat.fleaDate ?: 0)
-            .copy(catDiseases = cat.diseases ?: "").copy(catDewormingDate = cat.dewormingDate ?: 0)
-            .copy(catPictureUri = cat.profilePicture ?: "")
+            .copy(catBirthdate = cat.birthdate)
+            .copy(weight = cat.weight.toString())
+            .copy(catCoat = cat.coat)
+            .copy(catVaccineDate = cat.vaccineDate ?: 0)
+            .copy(catFleaDate = cat.fleaDate ?: 0)
+            .copy(catDiseases = cat.diseases ?: "")
+            .copy(catDewormingDate = cat.dewormingDate ?: 0)
+            .copy(catPictureUri = cat.profilePicturePath?.toUri())
     }
 }

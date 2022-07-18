@@ -4,7 +4,6 @@ package com.ms.catlife.feature_add_cat.presentation.screen
 
 import android.content.Context
 import android.content.ContextWrapper
-import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -52,12 +51,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.ms.catlife.R
 import com.ms.catlife.core.util.TestTags
+import com.ms.catlife.core.util.getFileName
 import com.ms.catlife.feature_add_cat.presentation.AddCatDateEvent
 import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
 import com.ms.catlife.theme.CatLifeTheme
@@ -73,8 +74,19 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         val context = LocalContext.current
 
         // Cat picture
-        val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) {
-            addCatViewModel.onEvent(AddCatFormEvent.CatPictureChanged(it.toString()))
+        val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { newUri ->
+            newUri?.let { uri ->
+                val catPictureName = context.getFileName(uri)
+
+                val input = context.contentResolver.openInputStream(newUri) ?: return@rememberLauncherForActivityResult
+                val outputFile = catPictureName?.let {
+                    context.filesDir.resolve(it)
+                }
+                outputFile?.let { input.copyTo(it.outputStream()) }
+
+                val uri = outputFile?.let { it.toUri() }
+                uri?.let { addCatViewModel.onEvent(AddCatFormEvent.OnCatProfilePicturePathChanged(it)) }
+            }
         }
 
         // Gender
@@ -87,8 +99,8 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         // Neutered
         val neuteredOptions = listOf(stringResource(R.string.yes), stringResource(R.string.no))
         val neuteredSelected = state.catNeutered.ifEmpty { stringResource(R.string.yes) }
-        val onNeuteredSelectionChangeed = { neuteredValue: String ->
-            addCatViewModel.onEvent(AddCatFormEvent.CatNeuterdChanged(neuteredValue))
+        val onNeuteredSelectionChanged = { neuteredValue: String ->
+            addCatViewModel.onEvent(AddCatFormEvent.CatNeuteredChanged(neuteredValue))
         }
 
         // Races
@@ -109,7 +121,6 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
         ) {
-
             //section picture
             Image(
                 modifier = Modifier.size(100.dp).align(Alignment.CenterHorizontally).clip(CircleShape)
@@ -117,7 +128,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 contentScale = ContentScale.Crop,
                 painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(context)
-                        .data(Uri.parse(state.catPictureUri))
+                        .data(state.catPictureUri)
                         .build()
                 ),
                 contentDescription = stringResource(R.string.uri_cat_picture)
@@ -227,7 +238,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                         text = neuteredValuePickedText,
                         color = Color.White,
                         modifier = Modifier.clip(RoundedCornerShape(size = 12.dp))
-                            .clickable { onNeuteredSelectionChangeed(neuteredValuePickedText) }.background(
+                            .clickable { onNeuteredSelectionChanged(neuteredValuePickedText) }.background(
                                 if (neuteredValuePickedText == neuteredSelected) {
                                     MaterialTheme.colors.primary
                                 } else {
@@ -552,9 +563,7 @@ private fun getAllRaces(context: Context): List<String> = listOf(
     context.getString(R.string.york_chocolate)
 )
 
-private fun showPickerDate(
-    activity: AppCompatActivity, type: AddCatDateEvent, addCatViewModel: AddCatViewModel
-) {
+private fun showPickerDate(activity: AppCompatActivity, type: AddCatDateEvent, addCatViewModel: AddCatViewModel) {
     val picker = MaterialDatePicker.Builder.datePicker().setSelection(DateFormatter.getDefaultDateInMillis()).build()
 
     picker.show(activity.supportFragmentManager, picker.toString())
@@ -564,8 +573,3 @@ private fun showPickerDate(
         }
     }
 }
-
-
-
-
-

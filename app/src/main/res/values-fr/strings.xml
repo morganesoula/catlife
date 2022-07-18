@@ -94,4 +94,5 @@
     <string name="wrong_input_format">Donnée non conforme</string>
     <string name="weight_error">Le poids devrait être compris entre 0.1 kg et 22 kilos</string>
     <string name="no_number_allowed">Les nombres ne sont pas autorisés</string>
+    <string name="next_events_title">Evènements à venir</string>
 </resources>

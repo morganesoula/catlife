@@ -58,6 +58,7 @@ class MainViewModel @Inject constructor(private val catUseCases: CatUseCases) : 
 
     private fun getCats(catsOrder: CatOrder) {
         getCatsJob?.cancel()
+
         getCatsJob = catUseCases.getAllCatsUseCase(catsOrder)
             .onEach { cats ->
                 state = state.copy(cats = cats, catsOrder = catsOrder)

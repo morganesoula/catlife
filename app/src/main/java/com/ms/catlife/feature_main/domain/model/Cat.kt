@@ -9,7 +9,7 @@ data class Cat(
     val gender: String,
     val neutered: String,
     val name: String,
-    val profilePicture: String? = null,
+    val profilePicturePath: String? = null,
     val birthdate: Long,
     val weight: Float,
     val race: String,
