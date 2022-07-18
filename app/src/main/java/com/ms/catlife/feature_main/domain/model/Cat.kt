@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class Cat(
     @PrimaryKey val id: Int? = null,
-    val gender: String,
-    val neutered: String,
+    val gender: Boolean,
+    val neutered: Boolean,
     val name: String,
     val profilePicturePath: String? = null,
     val birthdate: Long,

@@ -1,6 +1,7 @@
 package com.ms.catlife.feature_add_cat.presentation.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -53,6 +54,7 @@ class AddCatViewModel @Inject constructor(
     ) {
         when (event) {
             is AddCatFormEvent.CatGenderChanged -> {
+                Log.i("X_CAT", "Gender is: ${event.gender}")
                 state = state.copy(catGender = event.gender)
             }
 
@@ -146,6 +148,8 @@ class AddCatViewModel @Inject constructor(
         if (hasError) {
             return
         }
+
+        Log.i("X_CAT", "Gender before insert is: ${state.catGender}")
 
         viewModelScope.launch {
             catUseCases.insertCatUseCase(

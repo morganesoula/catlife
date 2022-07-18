@@ -84,23 +84,31 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
                 }
                 outputFile?.let { input.copyTo(it.outputStream()) }
 
-                val uri = outputFile?.let { it.toUri() }
-                uri?.let { addCatViewModel.onEvent(AddCatFormEvent.OnCatProfilePicturePathChanged(it)) }
+                val localUri = outputFile?.let { it.toUri() }
+                localUri?.let { addCatViewModel.onEvent(AddCatFormEvent.OnCatProfilePicturePathChanged(it)) }
             }
         }
 
         // Gender
         val genderOptions = listOf(stringResource(R.string.male), stringResource(R.string.female))
-        val genderSelected = state.catGender.ifEmpty { stringResource(R.string.male) }
+        val genderSelected = if (state.catGender) stringResource(R.string.male) else stringResource(R.string.female)
         val onSelectionChange = { genderPicked: String ->
-            addCatViewModel.onEvent(AddCatFormEvent.CatGenderChanged(genderPicked))
+            if (genderPicked == context.getString(R.string.male)) {
+                addCatViewModel.onEvent(AddCatFormEvent.CatGenderChanged(true))
+            } else {
+                addCatViewModel.onEvent(AddCatFormEvent.CatGenderChanged(false))
+            }
         }
 
         // Neutered
         val neuteredOptions = listOf(stringResource(R.string.yes), stringResource(R.string.no))
-        val neuteredSelected = state.catNeutered.ifEmpty { stringResource(R.string.yes) }
+        val neuteredSelected = if (state.catNeutered) stringResource(R.string.yes) else stringResource(R.string.no)
         val onNeuteredSelectionChanged = { neuteredValue: String ->
-            addCatViewModel.onEvent(AddCatFormEvent.CatNeuteredChanged(neuteredValue))
+            if (neuteredValue == context.getString(R.string.yes)) {
+                addCatViewModel.onEvent(AddCatFormEvent.CatNeuteredChanged(true))
+            } else {
+                addCatViewModel.onEvent(AddCatFormEvent.CatNeuteredChanged(false))
+            }
         }
 
         // Races
@@ -564,7 +572,8 @@ private fun getAllRaces(context: Context): List<String> = listOf(
 )
 
 private fun showPickerDate(activity: AppCompatActivity, type: AddCatDateEvent, addCatViewModel: AddCatViewModel) {
-    val picker = MaterialDatePicker.Builder.datePicker().setSelection(DateFormatter.getDefaultDateInMillis()).build()
+    val picker =
+        MaterialDatePicker.Builder.datePicker().setSelection(DateFormatter.getDefaultDateInMillis()).build()
 
     picker.show(activity.supportFragmentManager, picker.toString())
     picker.addOnPositiveButtonClickListener {

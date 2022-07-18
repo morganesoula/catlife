@@ -5,8 +5,8 @@ import android.net.Uri
 sealed class AddCatFormEvent {
 
     data class OnCatProfilePicturePathChanged(val catProfilePicturePath: Uri) : AddCatFormEvent()
-    data class CatGenderChanged(val gender: String) : AddCatFormEvent()
-    data class CatNeuteredChanged(val neutered: String): AddCatFormEvent()
+    data class CatGenderChanged(val gender: Boolean) : AddCatFormEvent()
+    data class CatNeuteredChanged(val neutered: Boolean): AddCatFormEvent()
     data class CatNameChanged(val catName: String) : AddCatFormEvent()
     data class CatWeightChanged(val weight: String) : AddCatFormEvent()
     data class CatCoatChanged(val coat: String) : AddCatFormEvent()
