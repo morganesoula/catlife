@@ -22,7 +22,8 @@ class GetCatByIdTest {
         catsToInsertOne = Cat(
             id = 1,
             name = "Oreo",
-            gender = "Male",
+            gender = true,
+            neutered = true,
             birthdate = 1529602002000,
             weight = 3.4f,
             race = "Européen",
@@ -32,7 +33,8 @@ class GetCatByIdTest {
         catsToInsertTwo = Cat(
             id = 2,
             name = "Douffy",
-            gender = "Femelle",
+            gender = false,
+            neutered = true,
             birthdate = 1403371602000,
             weight = 2.8f,
             race = "Siamoise",
@@ -54,6 +56,6 @@ class GetCatByIdTest {
 
         val catTwo = getCatUseCases.invoke(2)
 
-        assertThat(catTwo?.gender).isEqualTo("Femelle")
+        assertThat(catTwo?.gender).isFalse()
     }
 }

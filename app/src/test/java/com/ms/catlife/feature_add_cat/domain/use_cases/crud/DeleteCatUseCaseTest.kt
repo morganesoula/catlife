@@ -27,7 +27,8 @@ class DeleteCatUseCaseTest {
         val catToDelete = Cat(
             id = 1,
             name = "Oreo",
-            gender = "Male",
+            neutered = true,
+            gender = true,
             birthdate = 1529602002000,
             weight = 3.4f,
             race = "Européen",

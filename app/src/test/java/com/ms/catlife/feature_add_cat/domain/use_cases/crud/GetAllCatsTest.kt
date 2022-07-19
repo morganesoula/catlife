@@ -25,7 +25,8 @@ class GetAllCatsTest {
             catsToInsert.add(
                 Cat(
                     name = c.toString(),
-                    gender = c.toString(),
+                    gender = true,
+                    neutered = true,
                     birthdate = index.toLong(),
                     weight = index.toFloat(),
                     race = c.toString(),

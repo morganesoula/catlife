@@ -25,7 +25,8 @@ class InsertCatUseCaseTest {
     fun `insert cat, retrieve it`() = runBlocking {
         val catsToInsert = Cat(
             name = "Oreo",
-            gender = "Male",
+            gender = true,
+            neutered = true,
             birthdate = 1529602002000,
             weight = 3.4f,
             race = "Européen",
