@@ -1,9 +1,9 @@
-package com.ms.catlife.feature_add_cat.data.data_source
+package com.ms.catlife.core.data.data_source
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 
 @Database(
     entities = [Cat::class],

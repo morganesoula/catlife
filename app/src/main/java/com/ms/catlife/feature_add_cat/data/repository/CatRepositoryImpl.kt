@@ -1,8 +1,8 @@
 package com.ms.catlife.feature_add_cat.data.repository
 
-import com.ms.catlife.feature_add_cat.data.data_source.CatDAO
+import com.ms.catlife.core.data.data_source.CatDAO
 import com.ms.catlife.feature_add_cat.domain.repository.CatRepository
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 import kotlinx.coroutines.flow.Flow
 
 class CatRepositoryImpl(

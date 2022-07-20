@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ms.catlife.feature_add_cat.domain.use_cases.crud.CatUseCases
+import com.ms.catlife.core.domain.use_cases.crud.CatUseCases
 import com.ms.catlife.feature_add_cat.domain.util.CatOrder
 import com.ms.catlife.feature_add_cat.domain.util.OrderType
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 import com.ms.catlife.feature_main.presentation.cats.CatsEvent
 import com.ms.catlife.feature_main.presentation.cats.CatsState
 import dagger.hilt.android.lifecycle.HiltViewModel

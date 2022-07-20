@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ms.catlife.feature_add_cat.domain.model.AddCatFormState
 import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidationUseCases
-import com.ms.catlife.feature_add_cat.domain.use_cases.crud.CatUseCases
+import com.ms.catlife.core.domain.use_cases.crud.CatUseCases
 import com.ms.catlife.feature_add_cat.presentation.AddCatDateEvent
 import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -54,7 +54,6 @@ class AddCatViewModel @Inject constructor(
     ) {
         when (event) {
             is AddCatFormEvent.CatGenderChanged -> {
-                Log.i("X_CAT", "Gender is: ${event.gender}")
                 state = state.copy(catGender = event.gender)
             }
 

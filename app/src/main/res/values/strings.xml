@@ -105,4 +105,6 @@
     <string name="weight_error">Weight should be between 0.1 lbs and 49 lbs</string>
     <string name="no_number_allowed">Numbers are not allowed</string>
 
+    // Cat detail screen
+
 </resources>

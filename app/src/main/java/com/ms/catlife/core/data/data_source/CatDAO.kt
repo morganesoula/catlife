@@ -1,11 +1,11 @@
-package com.ms.catlife.feature_add_cat.data.data_source
+package com.ms.catlife.core.data.data_source
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 import kotlinx.coroutines.flow.Flow
 
 @Dao

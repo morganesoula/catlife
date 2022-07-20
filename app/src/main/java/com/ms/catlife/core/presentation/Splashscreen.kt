@@ -1,4 +1,4 @@
-package com.ms.catlife.feature_common.screen
+package com.ms.catlife.core.presentation
 
 import android.content.Intent
 import android.os.Bundle

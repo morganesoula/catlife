@@ -1,4 +1,4 @@
-package com.ms.catlife.feature_add_cat.domain.use_cases.crud
+package com.ms.catlife.core.domain.use_cases.crud
 
 data class CatUseCases(
     val insertCatUseCase: InsertCatUseCase,

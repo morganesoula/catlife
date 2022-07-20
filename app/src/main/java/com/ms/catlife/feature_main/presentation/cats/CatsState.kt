@@ -2,7 +2,7 @@ package com.ms.catlife.feature_main.presentation.cats
 
 import com.ms.catlife.feature_add_cat.domain.util.CatOrder
 import com.ms.catlife.feature_add_cat.domain.util.OrderType
-import com.ms.catlife.feature_main.domain.model.Cat
+import com.ms.catlife.core.data.entities.Cat
 
 data class CatsState(
     val cats: List<Cat> = emptyList(),

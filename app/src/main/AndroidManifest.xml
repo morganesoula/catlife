@@ -12,7 +12,7 @@
         android:installLocation="internalOnly"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".feature_common.screen.Splashscreen"
+            android:name=".core.presentation.Splashscreen"
             android:exported="true"
             android:theme="@style/Theme.CatLife.NoActionBar">
             <intent-filter>

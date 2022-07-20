@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ms.catlife.R
@@ -35,19 +36,28 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeCatBody(
-    contentPadding: PaddingValues, mainViewModel: MainViewModel, scaffoldState: ScaffoldState, scope: CoroutineScope
+    contentPadding: PaddingValues,
+    mainViewModel: MainViewModel,
+    scaffoldState: ScaffoldState,
+    scope: CoroutineScope,
+    navController: NavController
 ) {
     Column(modifier = Modifier.padding(contentPadding)) {
         when (mainViewModel.state.cats.size) {
             0 -> NoCats()
-            else -> ListOfCats(mainViewModel, scaffoldState, scope)
+            else -> ListOfCats(mainViewModel, scaffoldState, scope, navController)
         }
-        NextEvents()
+        //NextEvents()
     }
 }
 
 @Composable
-fun ListOfCats(mainViewModel: MainViewModel, scaffoldState: ScaffoldState, scope: CoroutineScope) {
+fun ListOfCats(
+    mainViewModel: MainViewModel,
+    scaffoldState: ScaffoldState,
+    scope: CoroutineScope,
+    navController: NavController
+) {
     val context = LocalContext.current
 
     MaterialTheme {
@@ -58,19 +68,24 @@ fun ListOfCats(mainViewModel: MainViewModel, scaffoldState: ScaffoldState, scope
                 Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp)) {
                     CatItem(painter = rememberAsyncImagePainter(
                         model = ImageRequest.Builder(context).data(currentCat.profilePicturePath?.toUri() ?: "").build()
-                    ), catName = currentCat.name, onDeleteClick = {
-                        mainViewModel.onEvent(CatsEvent.DeleteCat(currentCat))
+                    ),
+                        catName = currentCat.name,
+                        catGender = currentCat.gender,
+                        catId = currentCat.id!!,
+                        navController = navController,
+                        onDeleteClick = {
+                            mainViewModel.onEvent(CatsEvent.DeleteCat(currentCat))
 
-                        scope.launch {
-                            val result = scaffoldState.snackbarHostState.showSnackbar(
-                                message = "Cat deleted", actionLabel = "Undo"
-                            )
+                            scope.launch {
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "Cat deleted", actionLabel = "Undo"
+                                )
 
-                            if (result == SnackbarResult.ActionPerformed) {
-                                mainViewModel.onEvent(CatsEvent.RestoreCat)
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    mainViewModel.onEvent(CatsEvent.RestoreCat)
+                                }
                             }
-                        }
-                    })
+                        })
                 }
             }
         }

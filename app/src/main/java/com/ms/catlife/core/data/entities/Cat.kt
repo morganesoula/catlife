@@ -1,4 +1,4 @@
-package com.ms.catlife.feature_main.domain.model
+package com.ms.catlife.core.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
