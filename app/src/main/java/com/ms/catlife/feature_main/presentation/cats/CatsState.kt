@@ -6,6 +6,5 @@ import com.ms.catlife.feature_main.domain.model.Cat
 
 data class CatsState(
     val cats: List<Cat> = emptyList(),
-    val catsOrder: CatOrder = CatOrder.Name(OrderType.Ascending),
-    val isOrderSectionVisible: Boolean = false
+    val catsOrder: CatOrder = CatOrder.Name(OrderType.Ascending)
 )

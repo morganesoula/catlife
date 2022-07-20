@@ -95,4 +95,6 @@
     <string name="weight_error">Le poids devrait être compris entre 0.1 kg et 22 kilos</string>
     <string name="no_number_allowed">Les nombres ne sont pas autorisés</string>
     <string name="next_events_title">Evènements à venir</string>
+    <string name="app_name" translatable="false">Cat Life</string>
+    <string name="no_cats_text">Bienvenue dans CatLife ! Vous pouvez commencer à utiliser cette application en ajoutant un chat !</string>
 </resources>

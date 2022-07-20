@@ -30,6 +30,7 @@
     <string name="should_not_be_empty">Field should not be empty</string>
 
     // Home screen
+    <string name="no_cats_text">Welcome to CatLife! Start using this application by adding a new cat!</string>
     <string name="next_events_title">Events to come</string>
 
     // Cat race
