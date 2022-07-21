@@ -1,9 +1,9 @@
 package com.ms.catlife.core.domain.use_cases.crud
 
+import com.ms.catlife.core.data.entities.Cat
 import com.ms.catlife.feature_add_cat.domain.repository.CatRepository
 import com.ms.catlife.feature_add_cat.domain.util.CatOrder
 import com.ms.catlife.feature_add_cat.domain.util.OrderType
-import com.ms.catlife.core.data.entities.Cat
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

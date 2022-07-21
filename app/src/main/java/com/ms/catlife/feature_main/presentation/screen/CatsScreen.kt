@@ -1,6 +1,5 @@
 package com.ms.catlife.feature_main.presentation.screen
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,11 +11,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.SnackbarResult
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -29,23 +25,18 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ms.catlife.R
 import com.ms.catlife.core.util.TestTags
-import com.ms.catlife.feature_main.presentation.cats.CatsEvent
 import com.ms.catlife.feature_main.presentation.screen.components.CatItem
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Composable
 fun HomeCatBody(
     contentPadding: PaddingValues,
     mainViewModel: MainViewModel,
-    scaffoldState: ScaffoldState,
-    scope: CoroutineScope,
     navController: NavController
 ) {
     Column(modifier = Modifier.padding(contentPadding)) {
         when (mainViewModel.state.cats.size) {
             0 -> NoCats()
-            else -> ListOfCats(mainViewModel, scaffoldState, scope, navController)
+            else -> ListOfCats(mainViewModel, navController)
         }
         //NextEvents()
     }
@@ -54,8 +45,6 @@ fun HomeCatBody(
 @Composable
 fun ListOfCats(
     mainViewModel: MainViewModel,
-    scaffoldState: ScaffoldState,
-    scope: CoroutineScope,
     navController: NavController
 ) {
     val context = LocalContext.current
@@ -66,26 +55,16 @@ fun ListOfCats(
         LazyRow(modifier = Modifier.fillMaxWidth().testTag(TestTags.CATS_LIST)) {
             items(mainViewModel.state.cats) { currentCat ->
                 Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp)) {
-                    CatItem(painter = rememberAsyncImagePainter(
-                        model = ImageRequest.Builder(context).data(currentCat.profilePicturePath?.toUri() ?: "").build()
-                    ),
+                    CatItem(
+                        painter = rememberAsyncImagePainter(
+                            model = ImageRequest.Builder(context).data(currentCat.profilePicturePath?.toUri() ?: "")
+                                .build()
+                        ),
                         catName = currentCat.name,
                         catGender = currentCat.gender,
                         catId = currentCat.id!!,
-                        navController = navController,
-                        onDeleteClick = {
-                            mainViewModel.onEvent(CatsEvent.DeleteCat(currentCat))
-
-                            scope.launch {
-                                val result = scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Cat deleted", actionLabel = "Undo"
-                                )
-
-                                if (result == SnackbarResult.ActionPerformed) {
-                                    mainViewModel.onEvent(CatsEvent.RestoreCat)
-                                }
-                            }
-                        })
+                        navController = navController
+                    )
                 }
             }
         }

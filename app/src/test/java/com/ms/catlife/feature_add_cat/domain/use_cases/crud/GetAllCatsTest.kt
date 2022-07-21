@@ -1,11 +1,11 @@
 package com.ms.catlife.feature_add_cat.domain.use_cases.crud
 
 import com.google.common.truth.Truth.assertThat
+import com.ms.catlife.core.data.entities.Cat
+import com.ms.catlife.core.domain.use_cases.crud.GetAllCatsUseCase
 import com.ms.catlife.feature_add_cat.data.repository.FakeCatRepository
 import com.ms.catlife.feature_add_cat.domain.util.CatOrder
 import com.ms.catlife.feature_add_cat.domain.util.OrderType
-import com.ms.catlife.core.data.entities.Cat
-import com.ms.catlife.core.domain.use_cases.crud.GetAllCatsUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

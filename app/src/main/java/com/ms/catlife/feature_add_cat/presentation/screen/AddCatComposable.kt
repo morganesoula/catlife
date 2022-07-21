@@ -4,7 +4,6 @@ package com.ms.catlife.feature_add_cat.presentation.screen
 
 import android.content.Context
 import android.content.ContextWrapper
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -58,6 +57,7 @@ import coil.request.ImageRequest
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.ms.catlife.R
 import com.ms.catlife.core.util.TestTags
+import com.ms.catlife.core.util.ValidationEvent
 import com.ms.catlife.core.util.getFileName
 import com.ms.catlife.feature_add_cat.presentation.AddCatDateEvent
 import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
@@ -119,7 +119,7 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
         LaunchedEffect(context) {
             addCatViewModel.validationEvents.collect { event ->
                 when (event) {
-                    is AddCatViewModel.ValidationEvent.Success -> navController.navigateUp()
+                    is ValidationEvent.Success -> navController.navigateUp()
                 }
             }
         }
@@ -479,7 +479,6 @@ fun CatFormBody(navController: NavController, addCatViewModel: AddCatViewModel, 
             Button(
                 modifier = Modifier.align(Alignment.End).testTag(TestTags.SUBMIT_CAT_BUTTON),
                 onClick = {
-                    Log.d("XXXX", "Button clicked")
                     addCatViewModel.onEvent(AddCatFormEvent.Submit)
                 }
             ) {

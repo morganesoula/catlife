@@ -1,7 +1,6 @@
 package com.ms.catlife.feature_add_cat.presentation.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,12 +8,13 @@ import androidx.core.net.toUri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ms.catlife.core.data.entities.Cat
+import com.ms.catlife.core.domain.use_cases.crud.CatUseCases
+import com.ms.catlife.core.util.ValidationEvent
 import com.ms.catlife.feature_add_cat.domain.model.AddCatFormState
 import com.ms.catlife.feature_add_cat.domain.use_cases.cat_characteristics.ValidationUseCases
-import com.ms.catlife.core.domain.use_cases.crud.CatUseCases
 import com.ms.catlife.feature_add_cat.presentation.AddCatDateEvent
 import com.ms.catlife.feature_add_cat.presentation.AddCatFormEvent
-import com.ms.catlife.core.data.entities.Cat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -148,8 +148,6 @@ class AddCatViewModel @Inject constructor(
             return
         }
 
-        Log.i("X_CAT", "Gender before insert is: ${state.catGender}")
-
         viewModelScope.launch {
             catUseCases.insertCatUseCase(
                 Cat(
@@ -170,10 +168,6 @@ class AddCatViewModel @Inject constructor(
             )
             validationEventChannel.send(ValidationEvent.Success)
         }
-    }
-
-    sealed class ValidationEvent {
-        object Success : ValidationEvent()
     }
 
     private fun initCat(cat: Cat) {

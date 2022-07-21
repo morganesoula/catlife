@@ -6,10 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface CatRepository {
 
     fun getCats(): Flow<List<Cat>>
-
     suspend fun getCatById(id: Int): Cat?
-
     suspend fun insertCat(cat: Cat)
-
-    suspend fun deleteCat(cat: Cat)
+    suspend fun deleteCat(catId: Int)
 }

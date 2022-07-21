@@ -1,9 +1,9 @@
 package com.ms.catlife.feature_add_cat.domain.use_cases.crud
 
 import com.google.common.truth.Truth.assertThat
-import com.ms.catlife.feature_add_cat.data.repository.FakeCatRepository
 import com.ms.catlife.core.data.entities.Cat
 import com.ms.catlife.core.domain.use_cases.crud.GetCatUseCase
+import com.ms.catlife.feature_add_cat.data.repository.FakeCatRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

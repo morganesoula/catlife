@@ -97,4 +97,12 @@
     <string name="next_events_title">Evènements à venir</string>
     <string name="app_name" translatable="false">Cat Life</string>
     <string name="no_cats_text">Bienvenue dans CatLife ! Vous pouvez commencer à utiliser cette application en ajoutant un chat !</string>
+    <string name="unknown">Non renseignée</string>
+    <string name="fur">Fourrure</string>
+    <string name="race_title">Race</string>
+    <string name="weight_title">Poids</string>
+    <string name="lbs">kg</string>
+    <string name="edit">Modifier</string>
+    <string name="delete">Supprimer</string>
+    <string name="delete_confirmation">Voulez-vous vraiment supprimer ce chat?</string>
 </resources>

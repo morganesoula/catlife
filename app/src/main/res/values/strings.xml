@@ -106,5 +106,13 @@
     <string name="no_number_allowed">Numbers are not allowed</string>
 
     // Cat detail screen
+    <string name="unknown">Unknown</string>
+    <string name="fur">Fur</string>
+    <string name="race_title">Race</string>
+    <string name="weight_title">Weight</string>
+    <string name="lbs">lbs</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_confirmation">Do you really want to delete this cat?</string>
 
 </resources>

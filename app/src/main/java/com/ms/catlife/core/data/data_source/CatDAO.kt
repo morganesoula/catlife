@@ -1,7 +1,6 @@
 package com.ms.catlife.core.data.data_source
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -22,6 +21,6 @@ interface CatDAO {
     @Query("SELECT * FROM Cat WHERE name = :name")
     suspend fun getCatByName(name: String): Cat?
 
-    @Delete
-    suspend fun deleteCat(cat: Cat)
+    @Query("DELETE FROM Cat WHERE id = :catId")
+    suspend fun deleteCat(catId: Int)
 }

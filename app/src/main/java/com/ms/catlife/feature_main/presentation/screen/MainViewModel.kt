@@ -8,23 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.ms.catlife.core.domain.use_cases.crud.CatUseCases
 import com.ms.catlife.feature_add_cat.domain.util.CatOrder
 import com.ms.catlife.feature_add_cat.domain.util.OrderType
-import com.ms.catlife.core.data.entities.Cat
 import com.ms.catlife.feature_main.presentation.cats.CatsEvent
 import com.ms.catlife.feature_main.presentation.cats.CatsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val catUseCases: CatUseCases) : ViewModel() {
 
     var state by mutableStateOf(CatsState())
-
-    private var recentlyDeletedCat: Cat? = null
-
     private var getCatsJob: Job? = null
 
     init {
@@ -40,18 +35,6 @@ class MainViewModel @Inject constructor(private val catUseCases: CatUseCases) : 
                     return
                 }
                 getCats(catsOrder = event.catOrder)
-            }
-            is CatsEvent.RestoreCat -> {
-                viewModelScope.launch {
-                    catUseCases.insertCatUseCase(recentlyDeletedCat ?: return@launch)
-                    recentlyDeletedCat = null
-                }
-            }
-            is CatsEvent.DeleteCat -> {
-                viewModelScope.launch {
-                    catUseCases.deleteCatUseCase(event.cat)
-                    recentlyDeletedCat = event.cat
-                }
             }
         }
     }

@@ -1,18 +1,12 @@
 package com.ms.catlife
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.BottomAppBar
 import androidx.compose.material.FabPosition
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -60,9 +54,6 @@ fun CatLifeApp(
     mainViewModel: MainViewModel = hiltViewModel(),
     catDetailViewModel: CatDetailViewModel = hiltViewModel()
 ) {
-    val scaffoldState = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
-
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
 
     CatLifeTheme {
@@ -90,7 +81,7 @@ fun CatLifeApp(
 
                     Scaffold(
                         topBar = { CatLifeTopBar(stringResource(R.string.app_name)) },
-                        content = { HomeCatBody(contentPadding, mainViewModel, scaffoldState, scope, navController) }
+                        content = { HomeCatBody(contentPadding, mainViewModel, navController) }
                     )
                 }
 
@@ -124,11 +115,10 @@ fun CatLifeApp(
                             CatDetailBody(
                                 catId = id,
                                 catDetailViewModel = catDetailViewModel,
-                                content = contentPadding
+                                navController = navController
                             )
                         }
                     )
-
                 }
             }
         }

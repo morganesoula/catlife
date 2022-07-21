@@ -9,7 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.navigation.NavController
-import com.google.android.material.bottomappbar.BottomAppBar
 
 @Composable
 fun BottomAppBarComposable(navController: NavController, bottomBarState: MutableState<Boolean>) {
@@ -23,7 +22,7 @@ fun BottomAppBarComposable(navController: NavController, bottomBarState: Mutable
                 backgroundColor = MaterialTheme.colors.background,
                 cutoutShape = CircleShape
             ) {
-                
+
             }
         }
     )
